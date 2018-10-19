@@ -5,7 +5,12 @@ git config user.email "id@apache.org"
 git config user.name "your_name"
 ```
 ### Setup keys 
-  1. Generate a code signing key, https://www.apache.org/dev/openpgp.html#generate-key
+  1. Generate a code signing key
+  ```
+  gpg --gen-key
+  ```
+  More details: https://www.apache.org/dev/openpgp.html#key-gen-generate-key
+  
   2. Check the preference for SHA-1 for your key, https://www.apache.org/dev/openpgp.html#key-gen-avoid-sha1
   3. Upload/publish the key: https://www.apache.org/dev/release-signing.html#keyserver-upload 
   ```
@@ -28,7 +33,7 @@ A release consists of a doing a (i) source release; (b) binary release; (iii) up
   2. Perform `mvn apache-rat:check` and make sure it is a SUCCESS.
   3. Perform `mvn checkstyle:check`. For now it will fail. We need to gradually fix it. 
   4. `mvn release:prepare -P apache-release -Darguments="-DskipTests"  -DinteractiveMode=true -Dresume=false` 
-     The interactive mode allows us to explicitly name the current release version, release candidate, and next version. The convention here is to follow `apache-crail-x.y-incubating-rcX` naming, starting from release candidate 0. How to do another release candidate is disucssed later. In case, if you are not sure about some setting, try `-DdryRun=true`. NOTE: the bianry 
+     The interactive mode allows us to explicitly name the current release version, release candidate, and next version. The convention here is to follow `apache-crail-x.y-incubating-rcX` naming, starting from release candidate 0. How to do another release candidate is disucssed later. In case, if you are not sure about some setting, try `-DdryRun=true`. In case something goes wrong `mvn release:rollback`. NOTE: the bianry xxx
   5. Now we need to rename the artifacts to follow the naming convention  
   
   6. Generate checksum files for source and binary files
@@ -99,18 +104,16 @@ Thanks,
 ```
 
 ### Convention to preapre for another release condiate 
-```
-mvn release:rollback
-```
-then, keep the current release and next version, but bump the -rc on the SCM tag. 
+Keep the current release and next version, but bump the -rc on the SCM tag. So the current release will be x.y, and the next tag would be `x.(y+x)-SNAPSHOT`
 
 ## After acceptance 
   1. Tag the commit with the release version without -rcX"
   2. Upload to the release SVN https://dist.apache.org/repos/dist/release/incubator
-  3. Write a resulting email and announce on the mailing list 
-  4. Update the download page on the website 
-  5. Social media (Twitter, LinkedIn announcement)  
-  6. [Optionally] Check if docker images have been created successfully
+  3. Release the uploaded artifacts at Nexus https://repository.apache.org/index.html#welcome
+  4. Write a resulting email and announce on the mailing list 
+  5. Update the download page on the website 
+  6. Social media (Twitter, LinkedIn announcement)  
+  7. [Optionally] Check if docker images have been created successfully
 https://hub.docker.com/r/apache/incubator-crail/ and https://hub.docker.com/r/apache/incubator-crail-rdma/ with the new release tag.
 
 ## Useful links
