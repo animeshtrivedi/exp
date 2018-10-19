@@ -99,8 +99,10 @@ Thanks,
 ```
 
 ### Convention to preapre for another release condiate 
+```
 mvn release:rollback
-then 
+```
+then, keep the current release and next version, but bump the -rc on the SCM tag. 
 
 ## After acceptance 
   1. Tag the commit with the release version without -rcX"
