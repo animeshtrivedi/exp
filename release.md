@@ -22,9 +22,9 @@
 A release consists of a doing a (i) source release; (b) binary release; (iii) uploading maven artifacts; (iv) updating documentation. To do a version release of `x.y`, follow these steps: 
   1. Go through the closed JIRAs and merge requests, and update the HISTORY.md file about what is new in the new release version. 
   2. Perform `mvn apache-rat:check` and make sure it is a SUCCESS.
-  3. Perform `mvn stylecheck:check` and make sure it is a SUCCESS (though at this point, it is just a skeleton code, in future it will do proper style checks).
+  3. Perform `mvn checkstyle:check`. For now it will fail. We need to gradually fix it. 
   4. `mvn release:prepare -P apache-release -Darguments="-DskipTests"  -DinteractiveMode=true -Dresume=false` 
-     The interactive mode allows us to explicitly name the current release version, release candidate, and next version. The convention here is to follow `apache-crail-x.y-incubating-rcX` naming, starting from release candidate 0. How to do another release candidate is disucssed later. 
+     The interactive mode allows us to explicitly name the current release version, release candidate, and next version. The convention here is to follow `apache-crail-x.y-incubating-rcX` naming, starting from release candidate 0. How to do another release candidate is disucssed later. In case, if you are not sure about some setting, try `-DdryRun=true`.
   5. Now we need to rename the artifacts to follow the naming convention  
   
   6. Generate checksum files for source and binary files
@@ -95,6 +95,8 @@ Thanks,
 ```
 
 ### Convention to preapre for another release condiate 
+mvn release:rollback
+then 
 
 ## After acceptance 
   1. Tag the commit with the release version without -rcX"
