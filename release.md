@@ -13,6 +13,10 @@
   (gpg --list-sigs <key id> && gpg --armor --export <key id>) >> KEYS
   svn commit KEYS -m "your_name (id@apache.org) keys"  
   ```  
+  6. Upadate your profile https://id.apache.org/ with the fingerprint of the key. Find your fingerprint at 
+  ```
+  gpg --fingerprint
+  ```
 ### 
 ## Preapring for a release 
 A release consists of a doing a (i) source release; (b) binary release; (iii) uploading maven artifacts; (iv) updating documentation. To do a version release of `x.y`, follow these steps: 
