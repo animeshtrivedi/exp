@@ -1,5 +1,19 @@
 ## Configure your environment for a release 
-
+### Setup keys 
+  1. Generate a code signing key, https://www.apache.org/dev/openpgp.html#generate-key
+  2. Check the preference for SHA-1 for your key, https://www.apache.org/dev/openpgp.html#key-gen-avoid-sha1
+  3. Upload/publish the key: https://www.apache.org/dev/release-signing.html#keyserver-upload 
+  ```
+  gpg --keyserver pgp.mit.edu --send-keys <key id>
+  ```
+  4. Add your KEY in the KEYS file: 
+  ```
+  svn co https://dist.apache.org/repos/dist/release/incubator/crail/
+  cd crail
+  (gpg --list-sigs <key id> && gpg --armor --export <key id>) >> KEYS
+  svn commit KEYS -m "your_name (id@apache.org) keys"  
+  ```  
+### 
 ## Preapring for a release 
 A release consists of a doing a (i) source release; (b) binary release; (iii) uploading maven artifacts; (iv) updating documentation. To do a version release of `x.y`, follow these steps: 
   1. Go through the closed JIRAs and merge requests, and update the HISTORY.md file about what is new in the new release version. 
