@@ -24,7 +24,7 @@ Step 5 and 6 will be automated once the [JIRA-56](https://issues.apache.org/jira
   ```
   
   8. Verify signtures for source and binary files 
-  ````
+  ```
   gpg --verify apache-crail-x.y-incubating-src.tar.gz.asc apache-crail-x.y-incubating-src.tar.gz
   gpg --verify apache-crail-x.y-incubating-bin.tar.gz.asc apache-crail-x.y-incubating-bin.tar.gz
   ```
