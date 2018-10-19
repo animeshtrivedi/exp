@@ -28,7 +28,7 @@ A release consists of a doing a (i) source release; (b) binary release; (iii) up
   2. Perform `mvn apache-rat:check` and make sure it is a SUCCESS.
   3. Perform `mvn checkstyle:check`. For now it will fail. We need to gradually fix it. 
   4. `mvn release:prepare -P apache-release -Darguments="-DskipTests"  -DinteractiveMode=true -Dresume=false` 
-     The interactive mode allows us to explicitly name the current release version, release candidate, and next version. The convention here is to follow `apache-crail-x.y-incubating-rcX` naming, starting from release candidate 0. How to do another release candidate is disucssed later. In case, if you are not sure about some setting, try `-DdryRun=true`.
+     The interactive mode allows us to explicitly name the current release version, release candidate, and next version. The convention here is to follow `apache-crail-x.y-incubating-rcX` naming, starting from release candidate 0. How to do another release candidate is disucssed later. In case, if you are not sure about some setting, try `-DdryRun=true`. NOTE: the bianry 
   5. Now we need to rename the artifacts to follow the naming convention  
   
   6. Generate checksum files for source and binary files
