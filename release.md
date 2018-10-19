@@ -1,4 +1,9 @@
 ## Configure your environment for a release 
+### Setup git username 
+```
+git config user.email "id@apache.org"
+git config user.name "your_name"
+```
 ### Setup keys 
   1. Generate a code signing key, https://www.apache.org/dev/openpgp.html#generate-key
   2. Check the preference for SHA-1 for your key, https://www.apache.org/dev/openpgp.html#key-gen-avoid-sha1
@@ -17,7 +22,6 @@
   ```
   gpg --fingerprint
   ```
-### 
 ## Preapring for a release 
 A release consists of a doing a (i) source release; (b) binary release; (iii) uploading maven artifacts; (iv) updating documentation. To do a version release of `x.y`, follow these steps: 
   1. Go through the closed JIRAs and merge requests, and update the HISTORY.md file about what is new in the new release version. 
