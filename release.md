@@ -3,8 +3,8 @@
 ## Preapring for a release 
 A release consists of a doing a (i) source release; (b) binary release; (iii) uploading maven artifacts; (iv) updating documentation. To do a version release of `x.y`, follow these steps: 
   1. Go through the closed JIRAs and merge requests, and update the HISTORY.md file about what is new in the new release version. 
-  2. Perform `mvn apache-rat:check` 
-  3. Perform `mvn stylecheck:check` 
+  2. Perform `mvn apache-rat:check` and make sure it is a SUCCESS.
+  3. Perform `mvn stylecheck:check` and make sure it is a SUCCESS (though at this point, it is just a skeleton code, in future it will do proper style checks).
   4. `mvn release:prepare -P apache-release -Darguments="-DskipTests"  -DinteractiveMode=true -Dresume=false` 
      The interactive mode allows us to explicitly name the current release version, release candidate, and next version. The convention here is to follow `apache-crail-x.y-incubating-rcX` naming, starting from release candidate 0. How to do another release candidate is disucssed later. 
   5. Now we need to rename the artifacts to follow the naming convention  
@@ -31,6 +31,12 @@ Step 5 and 6 will be automated once the [JIRA-56](https://issues.apache.org/jira
   
   9. We need to upload the generated artifacts to SVN staging at `https://dist.apache.org/repos/dist/dev/incubator/crail/`  
   
+  10. Upload the artifacts to Nexus https://repository.apache.org/index.html#welcome (login using your Apache ID) 
+  
+  11. Close the release, and get the staging URL like https://repository.apache.org/content/repositories/orgapachecrail-1000/
+  
+  12. [Optionally] Check if docker images have been created successfully
+https://hub.docker.com/r/apache/incubator-crail/ and https://hub.docker.com/r/apache/incubator-crail-rdma/
 
 ## Voting 
 ```
@@ -73,11 +79,13 @@ Thanks,
 ### Convention to preapre for another release condiate 
 
 ## After acceptance 
-  * Tag the commit with the release version without -rcX"
-  * Upload to the release SVN https://dist.apache.org/repos/dist/release/incubator
-  * Write a resulting email and announce on the mailing list 
-  * Update the download page on the website 
-  * Social media (Twitter, LinkedIn announcement)  
+  1. Tag the commit with the release version without -rcX"
+  2. Upload to the release SVN https://dist.apache.org/repos/dist/release/incubator
+  3. Write a resulting email and announce on the mailing list 
+  4. Update the download page on the website 
+  5. Social media (Twitter, LinkedIn announcement)  
+  6. [Optionally] Check if docker images have been created successfully
+https://hub.docker.com/r/apache/incubator-crail/ and https://hub.docker.com/r/apache/incubator-crail-rdma/ with the new release tag.
 
 ## Useful links
   * General info for release signing: https://www.apache.org/dev/release-signing.html
