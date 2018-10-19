@@ -10,18 +10,24 @@ A release consists of a doing a (i) source release; (b) binary release; (iii) up
   5. Now we need to rename the artifacts to follow the naming convention  
   
   6. Generate checksum files for source and binary files
-  `sha512sum apache-crail-x.y-incubating-src.tar.gz > apache-crail-x.y-incubating-src.tar.gz.sha512`
-  `sha512sum apache-crail-x.y-incubating-bin.tar.gz > apache-crail-x.y-incubating-bin.tar.gz.sha512`
+  ```
+  sha512sum apache-crail-x.y-incubating-src.tar.gz > apache-crail-x.y-incubating-src.tar.gz.sha512
+  sha512sum apache-crail-x.y-incubating-bin.tar.gz > apache-crail-x.y-incubating-bin.tar.gz.sha512
+  ```
 
 Step 5 and 6 will be automated once the [JIRA-56](https://issues.apache.org/jira/projects/CRAIL/issues/CRAIL-56) is fixed.
   
   7. Verify checksums for source and binary files 
-  `sha512sum -c apache-crail-x.y-incubating-src.tar.gz.sha512`
-  `sha512sum -c apache-crail-x.y-incubating-bin.tar.gz.sha512`
+  ```
+  sha512sum -c apache-crail-x.y-incubating-src.tar.gz.sha512
+  sha512sum -c apache-crail-x.y-incubating-bin.tar.gz.sha512
+  ```
   
   8. Verify signtures for source and binary files 
-  `gpg --verify apache-crail-x.y-incubating-src.tar.gz.asc apache-crail-x.y-incubating-src.tar.gz`
-  `gpg --verify apache-crail-x.y-incubating-bin.tar.gz.asc apache-crail-x.y-incubating-bin.tar.gz`
+  ````
+  gpg --verify apache-crail-x.y-incubating-src.tar.gz.asc apache-crail-x.y-incubating-src.tar.gz
+  gpg --verify apache-crail-x.y-incubating-bin.tar.gz.asc apache-crail-x.y-incubating-bin.tar.gz
+  ```
   
   9. We need to upload the generated artifacts to SVN staging at `https://dist.apache.org/repos/dist/dev/incubator/crail/`  
   
